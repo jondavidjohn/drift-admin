@@ -24,7 +24,7 @@ data "tfe_organization" "drift_testing_org" {
 
 resource "tfe_workspace" "managed_workspace" {
   count        = 5
-  organization = tfe_organization.drift_testing_org.name
+  organization = data.tfe_organization.drift_testing_org.name
   auto_apply   = true
   name         = "managed-workspace-${count.index}"
 }
