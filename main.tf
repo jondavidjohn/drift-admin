@@ -18,13 +18,9 @@ provider "tfe" {
   hostname = var.hostname
 }
 
-data "tfe_organization" "drift_testing_org" {
-  name  = var.org_name
-}
-
 resource "tfe_workspace" "managed_workspace" {
   count        = 5
-  organization = data.tfe_organization.drift_testing_org.name
+  organization = var.org_name
   auto_apply   = true
   name         = "managed-workspace-${count.index}"
 }
