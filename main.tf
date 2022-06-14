@@ -6,16 +6,16 @@ terraform {
   }
 }
 
-provider "tfe" {
-  hostname = var.hostname
-}
-
 variable "hostname" {
   type = string
 }
 
 variable "user_email" {
   type = string
+}
+
+provider "tfe" {
+  hostname = var.hostname
 }
 
 resource "tfe_organization" "drift_testing_org" {
