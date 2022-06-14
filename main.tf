@@ -10,17 +10,12 @@ variable "hostname" {
   type = string
 }
 
-variable "user_email" {
-  type = string
-}
-
 provider "tfe" {
   hostname = var.hostname
 }
 
-resource "tfe_organization" "drift_testing_org" {
+data "tfe_organization" "drift_testing_org" {
   name  = "drift-testing-org"
-  email = var.user_email
 }
 
 data "tfe_organization_membership" "user" {
