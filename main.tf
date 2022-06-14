@@ -10,17 +10,16 @@ variable "hostname" {
   type = string
 }
 
+variable "org_name" {
+  type = string
+}
+
 provider "tfe" {
   hostname = var.hostname
 }
 
 data "tfe_organization" "drift_testing_org" {
-  name  = "drift-testing-org"
-}
-
-data "tfe_organization_membership" "user" {
-  organization  = tfe_organization.drift_testing_org.name
-  email = var.user_email
+  name  = var.org_name
 }
 
 resource "tfe_workspace" "managed_workspace" {
