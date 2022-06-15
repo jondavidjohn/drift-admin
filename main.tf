@@ -19,7 +19,7 @@ provider "tfe" {
 }
 
 resource "tfe_workspace" "managed_workspace" {
-  count        = 5
+  count        = 6
   organization = var.org_name
   auto_apply   = true
   name         = "managed-workspace-${count.index}"
