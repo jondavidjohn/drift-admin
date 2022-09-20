@@ -23,4 +23,11 @@ resource "tfe_workspace" "managed_workspace" {
   organization = var.org_name
   auto_apply   = true
   name         = "managed-workspace-${count.index}"
+
+  lifecycle {
+    postcondition {
+      condition     = self.name == "managed-workspace-${count.index}"
+      error_message = "This workspace does not have the correct name"
+    }
+  }
 }
