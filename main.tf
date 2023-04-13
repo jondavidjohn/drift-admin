@@ -32,9 +32,9 @@ resource "tfe_workspace" "managed_workspace" {
   }
 }
 
-check "check_workspace_count" {
+check "check_workspace_name" {
   assert {
-    condition = length(tfe_workspace.managed_workspace) == 6
-    error_message = "We have 6 managed workspaces"
+    condition     = tfe_workspace.managed_workspace[0].name == "managed-workspace-0"
+    error_message = "Workspace ${tfe_workspace.managed_workspace[0].name} does not have the correct name"
   }
 }
