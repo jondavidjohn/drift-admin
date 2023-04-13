@@ -31,3 +31,10 @@ resource "tfe_workspace" "managed_workspace" {
     }
   }
 }
+
+check "check_workspace_count" {
+  assert {
+    condition = length(tfe_workspace.managed_workspace) == 6
+    error_message = "We have 6 managed workspaces"
+  }
+}
