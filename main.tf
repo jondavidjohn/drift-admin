@@ -19,14 +19,13 @@ provider "tfe" {
 }
 
 resource "tfe_workspace" "managed_workspace" {
-  count        = 6
   organization = var.org_name
   auto_apply   = true
-  name         = "managed-workspace-${count.index}"
+  name         = "managed-workspace"
 
   lifecycle {
     postcondition {
-      condition     = self.name == "managed-workspace-${count.index}"
+      condition     = self.name == "managed-workspace"
       error_message = "This workspace does not have the correct name"
     }
   }
