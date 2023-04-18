@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     tfe = {
-      version  = "~> 0.26.0"
+      version  = "0.43.0"
     }
   }
 }
@@ -23,11 +23,11 @@ resource "tfe_workspace" "managed_workspace" {
   organization = var.org_name
   auto_apply   = true
   name         = "managed-workspace-${count.index}"
-}
 
-check "check_workspace_name" {
-  assert {
-    condition     = tfe_workspace.managed_workspace[0].name == "managed-workspace-0"
-    error_message = "Workspace ${tfe_workspace.managed_workspace[0].name} does not have the correct name"
+  lifecycle {
+    precondition {
+      condition     = self.name == "managed-workspace-${count.index}"
+      error_message = "This workspace does not have the correct name"
+    }
   }
 }
