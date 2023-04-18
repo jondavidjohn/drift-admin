@@ -25,7 +25,7 @@ resource "tfe_workspace" "managed_workspace" {
   name         = "managed-workspace-${count.index}"
 
   lifecycle {
-    precondition {
+    postcondition {
       condition     = self.name == "managed-workspace-${count.index}"
       error_message = "This workspace does not have the correct name"
     }
