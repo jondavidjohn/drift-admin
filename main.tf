@@ -20,7 +20,7 @@ provider "tfe" {
 
 resource "tfe_workspace" "managed_workspace" {
   organization = var.org_name
-  auto_apply   = false
+  auto_apply   = true
   name         = "managed-workspace"
   tag_names    = ["some:tag"]
 
