@@ -21,12 +21,12 @@ provider "tfe" {
 resource "tfe_workspace" "managed_workspace" {
   organization = var.org_name
   auto_apply   = true
-  name         = "managed-workspace-update"
+  name         = "managed-workspace-update-2"
   tag_names    = ["some:tag"]
 
   lifecycle {
     postcondition {
-      condition     = self.name == "managed-workspace-update"
+      condition     = self.name == "managed-workspace-update-2"
       error_message = "This workspace does not have the correct name"
     }
   }
