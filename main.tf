@@ -21,7 +21,7 @@ provider "tfe" {
 resource "tfe_workspace" "managed_workspace" {
   organization = var.org_name
   auto_apply   = true
-  name         = "managed-workspace"
+  name         = "managed-workspace-update"
   tag_names    = ["some:tag"]
 
   lifecycle {
