@@ -20,9 +20,9 @@ provider "tfe" {
 
 resource "tfe_workspace" "managed_workspace" {
   organization = var.org_name
-  auto_apply   = true
+  auto_apply   = false
   name         = "managed-workspace-update-2"
-  tag_names    = ["some:tag"]
+  tag_names    = ["some:tag", "another:tag"]
 
   lifecycle {
     postcondition {
